@@ -1,0 +1,31 @@
+:root {
+  --font-family: Poppins, sans-serif;
+  --color-icon: rgba(0, 0, 0, 0.4);
+  --color-border: rgba(0, 0, 0, 1);
+  --color-text-hover: #56cfe1;
+  --color-background-hover: rgba(34, 226, 245, 0.2);
+}
+
+html {
+  font-family: var(--font-family);
+  box-sizing: border-box;
+  background-color: white;
+  font-size: 16px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}

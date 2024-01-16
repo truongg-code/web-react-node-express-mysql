@@ -1,0 +1,60 @@
+.content-contact {
+  margin-top: auto;
+  max-width: 100%;
+  margin: 0 20vw;
+  line-height: 2em;
+}
+
+.content-contact {
+  color: var(--color-icon);
+}
+
+.content-contact h3 {
+  color: #000;
+  margin-bottom: 3em;
+  margin-top: 10em;
+  font-weight: 800;
+}
+
+.infor_communication i {
+  vertical-align: middle;
+  margin-right: 0.5em;
+}
+
+// .infor_communication:hover {
+//   color: var(--color-text-hover);
+//   transition: all 0.2s;
+// }
+
+.section-title {
+  font-size: 1em;
+  letter-spacing: 0.3em;
+  text-align: center;
+}
+
+.section-title:after,
+.section-title:before {
+  margin: 2em;
+  content: "";
+  display: inline-block;
+  vertical-align: middle;
+  width: 2.5em;
+  height: 0.1em;
+  background-color: #000;
+}
+
+@media only screen and (min-width: 300px) and (max-width: 750px) {
+  .content-contact {
+    margin: 0;
+  }
+  .section-title {
+    font-size: 0.7em;
+    margin: 0;
+  }
+}
+
+/* @media only screen and (max-width: 750px) {
+    .content-contact {
+      margin: 0;
+    }
+  } */

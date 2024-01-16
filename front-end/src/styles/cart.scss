@@ -1,0 +1,133 @@
+.cart-container {
+  padding-bottom: 5em;
+  border-bottom: 1px solid var(--color-icon);
+  .row {
+    margin-top: 2em;
+    .table {
+      margin: 2em;
+      th {
+        font-weight: 500;
+      }
+    }
+
+    .product-place {
+      display: flex;
+      column-gap: 1em;
+      align-items: center;
+      .name-item {
+        text-decoration: none;
+        color: #000;
+      }
+
+      .btn-remove {
+        background-color: #fff;
+        font-size: 1em;
+        border: none;
+        color: var(--color-icon);
+
+        &:hover {
+          color: #000;
+          transition: color 1s;
+        }
+      }
+    }
+
+    .price {
+      padding-left: 1em;
+      padding-top: calc(4em - 5px);
+    }
+
+    .quantity {
+      width: 30%;
+      margin-top: calc(3em - 9px);
+      margin-left: 0.3em;
+
+      input {
+        width: 20%;
+        outline: none;
+        border: none;
+        font-size: 1em;
+        text-align: center;
+      }
+      input[type="number"]::-webkit-inner-spin-button,
+      input[type="number"]::-webkit-outer-spin-button {
+        display: none;
+      }
+    }
+
+    .total {
+      padding-top: calc(4em - 5px);
+    }
+  }
+
+  .notion-container {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 2em;
+    margin-right: 2em;
+
+    .notion-place {
+      width: 60vw;
+      p {
+        margin-top: 1em;
+        margin-bottom: 0;
+      }
+
+      span {
+        color: rgba(0, 0, 0, 0.4);
+      }
+
+      .notion-text {
+        height: 3em;
+        width: 60%;
+
+        &::placeholder {
+          padding-top: 0;
+        }
+      }
+
+      .coupon-text {
+        width: 60%;
+      }
+    }
+
+    .price-checkout {
+      text-align: center;
+      .quick-cart-btn-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin: 2em auto;
+        row-gap: 1em;
+        font-size: 0.9em;
+
+        button {
+          letter-spacing: 5px;
+          height: 5vh;
+          border-radius: 20px;
+          border: none;
+          color: #222;
+          font-weight: 500;
+        }
+
+        .view-cart-btn {
+          background-color: #f7f7f7;
+
+          &:hover {
+            opacity: 0.6;
+            transition: all 1s;
+          }
+        }
+
+        .check-out-btn {
+          background-color: var(--color-text-hover);
+
+          &:hover {
+            background-color: rgba(52, 175, 197, 0.8);
+            transition: all 1s;
+          }
+        }
+      }
+    }
+  }
+}
