@@ -28,6 +28,13 @@ const fetchProductsSearchInput = (query) => {
   return axios.get(`/api/collections/shop-all/search/?q=${query}`);
 };
 
+const countOrderCodeDuplicated = (orderCode) => {
+  return axios.get(`/customer/check-duplicated?order_code=${orderCode}`);
+};
+
+const getCheckBankingCustomer = (orderCode) => {
+  return axios.get(`/customer/check-banking?order_code=${orderCode}`);
+};
 export {
   fetchNavBar,
   fetchShopAllProducts,
@@ -35,4 +42,6 @@ export {
   fetchProductDetail,
   fetchProductsFilterByPrice,
   fetchProductsSearchInput,
+  countOrderCodeDuplicated,
+  getCheckBankingCustomer,
 };

@@ -5,22 +5,66 @@ import myQRcode from "../assets/qr_code.jpg";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useShoppingContext } from "../contexts/ShoppingContext";
+import { getCheckBankingCustomer } from "../services/Service";
 
 const ModalCompleteOrder = (props) => {
-  const { show, handleClose, orderCode } = props;
+  const {
+    show,
+    handleClose,
+    orderCode,
+    email,
+    firstName,
+    lastName,
+    streetAddress,
+    district,
+    city,
+    phone,
+    paymentMethod,
+  } = props;
+
   const navigate = useNavigate();
   const [valueInput, setValueInput] = useState("");
 
-  const { clearCart } = useShoppingContext();
+  const { clearCart, totalPrice, cartItems } = useShoppingContext();
 
-  const handleClick = () => {
-    axios
-      .delete(`http://localhost:8081/customer/delete?order_id=${orderCode}`)
-      .then((res) => {
-        console.log(">> check res delete: ", res);
-      })
-      .catch((err) => console.log(err));
+  const handleClickClose = () => {
     handleClose();
+  };
+
+  const handleClickConfirm = async () => {
+    const res = await getCheckBankingCustomer(orderCode);
+    let isPay;
+    if (res.length > 0) isPay = 1;
+    else isPay = 0;
+    if (valueInput === orderCode.toString()) {
+      const userCart = JSON.stringify(cartItems);
+      axios
+        .post("http://localhost:8081/customer/create", {
+          email,
+          firstName,
+          lastName,
+          streetAddress,
+          district,
+          city,
+          phone,
+          userCart,
+          paymentMethod,
+          totalPrice,
+          orderCode,
+          isPay,
+        })
+        .then((res) => {
+          console.log(">> check res", res.data.Message);
+        })
+        .catch((err) => console.log(err));
+
+      handleClose();
+      clearCart();
+      navigate("/complete-order");
+      window.location.reload();
+    } else {
+      alert("Please re-enter your order code");
+    }
   };
 
   return (
@@ -78,7 +122,7 @@ const ModalCompleteOrder = (props) => {
         <Button
           variant="secondary"
           onClick={() => {
-            handleClick();
+            handleClickClose();
           }}
         >
           Close
@@ -86,14 +130,7 @@ const ModalCompleteOrder = (props) => {
         <Button
           variant="primary"
           onClick={() => {
-            if (valueInput === orderCode.toString()) {
-              handleClose();
-              clearCart();
-              navigate("/complete-order");
-              window.location.reload();
-            } else {
-              alert("Please re-enter your order code");
-            }
+            handleClickConfirm();
           }}
         >
           Confirm

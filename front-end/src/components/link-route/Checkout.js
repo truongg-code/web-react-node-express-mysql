@@ -3,6 +3,7 @@ import "../../styles/pages/checkout.scss";
 import { useShoppingContext } from "../../contexts/ShoppingContext";
 import axios from "axios";
 import ModalCompleteOrder from "../ModalCompleteOrder";
+import { countOrderCodeDuplicated } from "../../services/Service";
 
 const Checkout = () => {
   const { cartItems, totalPrice } = useShoppingContext();
@@ -20,26 +21,38 @@ const Checkout = () => {
   const [isShowModalCompleteOrder, setIsShowModalCompleteOrder] =
     useState(false);
 
-  const handleSubmit = () => {
-    const userCart = JSON.stringify(cartItems);
-    axios
-      .post("http://localhost:8081/customer/create", {
-        email,
-        firstName,
-        lastName,
-        streetAddress,
-        district,
-        city,
-        phone,
-        userCart,
-        paymentMethod,
-        totalPrice,
-      })
-      .then((res) => {
-        console.log(">> check res", res.data.Message);
-        setOrderCode(res.data.Message);
-      })
-      .catch((err) => console.log(err));
+  const generateRandomString = () => {
+    // generate random number from 0 to 999999
+    const randomNumber = Math.floor(Math.random() * 1000000);
+
+    // Format the number to have 6 digits, adding zeroes if necessary
+    const formattedString = String(randomNumber).padStart(6, "0");
+
+    return formattedString;
+  };
+
+  const handleSubmit = async () => {
+    let orderCodeCurrent = await generateRandomString();
+
+    const res = await countOrderCodeDuplicated(orderCodeCurrent);
+    let countOrderDuplicated = res[0].count;
+    if (countOrderDuplicated !== 0) console.log("order duplicated!");
+    else {
+      console.log("order is created!");
+      console.log(orderCodeCurrent);
+    }
+
+    // if count > 0 => duplicated, need generate ordercode again
+    while (countOrderDuplicated !== 0) {
+      orderCodeCurrent = await generateRandomString();
+      const res = await countOrderCodeDuplicated(orderCodeCurrent);
+      countOrderDuplicated = res[0].count;
+      if (countOrderDuplicated === 0) {
+        break;
+      }
+    }
+
+    setOrderCode(orderCodeCurrent);
     setIsShowModalCompleteOrder(true);
   };
 
@@ -184,6 +197,14 @@ const Checkout = () => {
               show={isShowModalCompleteOrder}
               handleClose={handleClose}
               orderCode={orderCode}
+              email={email}
+              firstName={firstName}
+              lastName={lastName}
+              streetAddress={streetAddress}
+              district={district}
+              phone={phone}
+              city={city}
+              paymentMethod={paymentMethod}
             />
           </div>
         </div>
