@@ -24,6 +24,7 @@ const ModalCompleteOrder = (props) => {
 
   const navigate = useNavigate();
   const [valueInput, setValueInput] = useState("");
+  const [loadingConfirm, setLoadingConfirm] = useState(false);
 
   const { clearCart, totalPrice, cartItems } = useShoppingContext();
 
@@ -32,38 +33,43 @@ const ModalCompleteOrder = (props) => {
   };
 
   const handleClickConfirm = async () => {
+    setLoadingConfirm(true);
     const res = await getCheckBankingCustomer(orderCode);
     let isPay;
     if (res.length > 0) isPay = 1;
     else isPay = 0;
     if (valueInput === orderCode.toString()) {
       const userCart = JSON.stringify(cartItems);
-      axios
-        .post("http://localhost:8081/customer/create", {
-          email,
-          firstName,
-          lastName,
-          streetAddress,
-          district,
-          city,
-          phone,
-          userCart,
-          paymentMethod,
-          totalPrice,
-          orderCode,
-          isPay,
-        })
-        .then((res) => {
-          console.log(">> check res", res.data.Message);
-        })
-        .catch((err) => console.log(err));
+      setTimeout(() => {
+        axios
+          .post("http://localhost:8081/customer/create", {
+            email,
+            firstName,
+            lastName,
+            streetAddress,
+            district,
+            city,
+            phone,
+            userCart,
+            paymentMethod,
+            totalPrice,
+            orderCode,
+            isPay,
+          })
+          .then((res) => {
+            console.log(">> check res", res.data.Message);
+          })
+          .catch((err) => console.log(err));
+        localStorage.setItem("order_code", orderCode);
 
-      handleClose();
-      clearCart();
-      navigate("/complete-order");
-      window.location.reload();
+        handleClose();
+        clearCart();
+        navigate("/complete-order");
+        window.location.reload();
+      }, 10000);
     } else {
       alert("Please re-enter your order code");
+      setLoadingConfirm(false);
     }
   };
 
@@ -77,7 +83,7 @@ const ModalCompleteOrder = (props) => {
           Please transfer money to me using the following QR code if you choose
           a bank before confirming the order with the transfer content being:
           "order_code banking" (For example, if your order code is 11, the
-          transfer content is: 11 banking)
+          transfer content is: <span style={{ color: "red" }}>11 banking</span>)
         </b>
         <br />
         <div
@@ -133,7 +139,8 @@ const ModalCompleteOrder = (props) => {
             handleClickConfirm();
           }}
         >
-          Confirm
+          {loadingConfirm && <i className="fas fa-circle-notch fa-spin"></i>}
+          &nbsp; Confirm
         </Button>
       </Modal.Footer>
     </Modal>

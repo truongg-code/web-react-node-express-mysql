@@ -4,6 +4,10 @@ const fetchNavBar = () => {
   return axios.get("/api/navigation");
 };
 
+const fetchChildItemNavBar = () => {
+  return axios.get("/api/child-item-navigation");
+};
+
 const fetchShopAllProducts = () => {
   return axios.get("/api/collections/shop-all");
 };
@@ -37,6 +41,7 @@ const getCheckBankingCustomer = (orderCode) => {
 };
 export {
   fetchNavBar,
+  fetchChildItemNavBar,
   fetchShopAllProducts,
   fetchProductsArrange,
   fetchProductDetail,

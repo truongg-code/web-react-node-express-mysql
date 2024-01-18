@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 const CompleteOrder = () => {
+  // useEffect(()=> {
+  //   localStorage.getItem("order_code");
+  // },[])
   return (
     <div className="error-container">
       <div className="error-content">
@@ -12,11 +15,23 @@ const CompleteOrder = () => {
           ></i>
         </h1>
         <h3>
-          Your order has been confirmed and will be shipped as soon as possible.
-          Thank you so much!!!
+          Your code order is:{" "}
+          <span style={{ color: "var(--color-text-hover)" }}>
+            {localStorage.getItem("order_code")}
+          </span>
         </h3>
+        <h3>
+          It has been confirmed and will be shipped as soon as possible. Thank
+          you so much!!!
+        </h3>
+        <h5>
+          Go back to the{" "}
+          <a href="/" onClick={() => localStorage.removeItem("order_code")}>
+            homepage
+          </a>
+        </h5>
         <p>
-          Go back to the <a href="/">homepage</a>
+          Look up order <a href="#">here</a>
         </p>
       </div>
     </div>

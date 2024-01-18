@@ -60,7 +60,7 @@ const ShopAll = () => {
 
   return (
     <>
-      <ScrollingNav />
+      {/* <ScrollingNav /> */}
       <div className="name-collection">
         <Filter
           show={isShowModalFilter}

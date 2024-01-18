@@ -5,13 +5,14 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import Container from "react-bootstrap/Container";
 import { NavLink, useNavigate } from "react-router-dom";
 import "../styles/header.scss";
-import { fetchNavBar } from "../services/Service";
+import { fetchChildItemNavBar, fetchNavBar } from "../services/Service";
 import QuickCart from "./QuickCart";
 import { useShoppingContext } from "../contexts/ShoppingContext";
 import SearchInput from "./SearchInput";
 
 const Header = () => {
   const [navBarList, setNavBarList] = useState([]);
+  const [childItemNavList, setChildItemNavList] = useState([]);
 
   const [isShowQuickCart, setIsShowQuickCart] = useState(false);
 
@@ -20,6 +21,7 @@ const Header = () => {
 
   useEffect(() => {
     getNavBar();
+    getChildItemNavBar();
   }, []);
 
   const getNavBar = async () => {
@@ -29,9 +31,17 @@ const Header = () => {
     }
   };
 
+  const getChildItemNavBar = async () => {
+    const res = await fetchChildItemNavBar();
+    if (res) {
+      setChildItemNavList(res);
+    }
+  };
+
   const handleClose = () => {
     setIsShowQuickCart(false);
   };
+  console.log(childItemNavList);
   return (
     <>
       <div className="header-container">
@@ -99,10 +109,19 @@ const Header = () => {
                           id="basic-nav-dropdown"
                           key={`item-nav-${item.NavID}`}
                         >
-                          <NavDropdown.Item href="#action/3.1">
-                            Action
-                          </NavDropdown.Item>
-                          <NavDropdown.Item href="#action/3.2">
+                          {childItemNavList.map((itemChild) => {
+                            if (itemChild.NavID === item.NavID) {
+                              return (
+                                <NavDropdown.Item
+                                  href={`/collections/${itemChild.slug}`}
+                                  // className="py-3"
+                                >
+                                  {itemChild.name}
+                                </NavDropdown.Item>
+                              );
+                            }
+                          })}
+                          {/* <NavDropdown.Item href="#action/3.2">
                             Another action
                           </NavDropdown.Item>
                           <NavDropdown.Item href="#action/3.3">
@@ -111,7 +130,7 @@ const Header = () => {
                           <NavDropdown.Divider />
                           <NavDropdown.Item href="#action/3.4">
                             Separated link
-                          </NavDropdown.Item>
+                          </NavDropdown.Item> */}
                         </NavDropdown>
                       );
                     }
