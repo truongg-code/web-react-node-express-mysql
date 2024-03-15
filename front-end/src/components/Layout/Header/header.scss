@@ -1,0 +1,141 @@
+@import url("../../../styles/global.scss");
+.header-container {
+  margin-bottom: 7.5em;
+  position: relative;
+
+  .navbar-nav .nav-link.active {
+    color: var(--color-text-hover);
+  }
+
+  .dropdown-toggle::after {
+    color: var(--color-icon);
+  }
+  .nav-container {
+    background-color: #fff !important;
+    height: 7em;
+    display: relative;
+
+    #search-icon,
+    #cart-icon {
+      color: var(--color-icon);
+    }
+
+    @media only screen and (max-width: 850px) {
+      .container {
+        .navbar-hidden {
+          padding-left: 1em;
+          position: absolute;
+          top: 7em;
+          background-color: #fff;
+          width: 100%;
+
+          left: 0;
+        }
+      }
+      .hamburger {
+        position: absolute;
+        top: 1.9em;
+
+        left: 0.1em;
+      }
+
+      .logo-shop {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      .icon-header-mobile {
+        position: absolute;
+        top: 2.8em;
+        right: 2em;
+        #search-icon,
+        #cart-icon {
+          font-size: 1.2em !important;
+        }
+
+        #cart-icon {
+          margin-left: 1em;
+        }
+      }
+    }
+
+    @media only screen and (max-width: 980px) and (min-width: 768px) {
+      .symbol {
+        position: absolute;
+        top: 2.8em;
+        right: 0;
+        font-size: 1.2em;
+      }
+
+      .hamburger {
+        position: absolute;
+        top: 2.4em;
+
+        left: 0.1em;
+      }
+
+      .logo-shop {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      #search-icon {
+        position: absolute;
+        top: 2.8em;
+        right: 5.2em;
+        font-size: 1.2em !important;
+      }
+    }
+  }
+
+  .container {
+    background-color: #fff;
+  }
+
+  .link-option {
+    font-size: 0.9em;
+  }
+
+  .symbol {
+    display: flex;
+    gap: 1em;
+    margin-left: 0.5em;
+    color: var(--color-icon);
+    margin-right: 1em;
+
+    i {
+      cursor: pointer;
+
+      &:hover {
+        font-size: 1.3em;
+        transition: font-size 500ms;
+        color: var(--color-text-hover);
+      }
+    }
+    .fa-regular {
+      margin-top: 4px;
+    }
+
+    .cart-icon-container {
+      position: relative;
+
+      .cart-quantity {
+        position: absolute;
+        font-size: 0.5em;
+        top: -10px;
+        right: -10px;
+        border-radius: 50%;
+        background-color: #000;
+        color: #fff;
+        height: 15px;
+        width: 15px;
+        text-align: center;
+        line-height: 15px;
+      }
+    }
+  }
+}

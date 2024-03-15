@@ -1,0 +1,285 @@
+@import url("../../../styles/global.scss");
+.image-introduce {
+  margin-top: 7em;
+  height: 18em;
+  background: url(https://dreamparty.pk/cdn/shop/files/PartySupplies-5.jpg?v=1668843719&width=2000)
+    no-repeat center;
+  background-size: cover;
+  position: relative;
+  margin-bottom: 0;
+  letter-spacing: 0.1em;
+}
+
+.text-introduce {
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.text-introduce h1 {
+  font-size: 1em;
+}
+
+#achievement-intro {
+  font-size: 1.1em;
+}
+
+#shop-now-btn {
+  border-radius: 10px;
+  color: white;
+  margin-top: 2em;
+  padding: 1em 3em;
+  border: none;
+  background-color: rgba(239, 113, 178, 0.8);
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: 500;
+}
+
+/* shop by categories */
+
+.shop-categories {
+  background-color: white;
+}
+
+.section-title {
+  font-size: 1em;
+  letter-spacing: 0.3em;
+  text-align: center;
+}
+
+.section-title:after,
+.section-title:before {
+  margin: 2em;
+  content: "";
+  display: inline-block;
+  vertical-align: middle;
+  width: 2em;
+  height: 0.1em;
+  background-color: #000;
+}
+
+.shop-categories > p {
+  margin-bottom: 1em;
+  text-align: center;
+}
+
+.cate-option {
+  width: 100%;
+  height: 90vw;
+  display: flex;
+  justify-content: space-around;
+  padding-bottom: 1em;
+}
+
+.birthday {
+  height: 90vw;
+  background: url(https://dreamparty.pk/cdn/shop/files/Sets.jpg?v=1668845052&width=800)
+    no-repeat center;
+  background-size: cover;
+  margin-left: 1em;
+  margin-right: 1em;
+  position: relative;
+  margin-bottom: 0.5em;
+  border-radius: 10px;
+  /* border: 2px solid var(--color-border); */
+  cursor: pointer;
+}
+
+.birthday:hover {
+  background-size: 105%;
+  transition: all ease 5s;
+}
+
+.birthday-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 300%);
+  padding: 1em 3.5em;
+  border: none;
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+.cate-option-contain {
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+.hanging-decorations {
+  width: 100%;
+  height: 50%;
+  background: url(https://dreamparty.pk/cdn/shop/files/Hanging-Decorations.jpg?v=1668845279&width=400)
+    no-repeat center;
+  background-size: cover;
+  position: relative;
+  border-radius: 15px;
+  margin-bottom: 1em;
+  cursor: pointer;
+  transition: all 1s;
+}
+
+.hanging-decorations:hover {
+  background-size: 102%;
+}
+
+.option-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 100%);
+  padding: 1em 3.5em;
+  border: none;
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+.hanging-decorations button {
+  transform: translate(-50%, 70%);
+}
+
+.balloons button {
+  transform: translate(-50%, 400%);
+}
+
+.sets {
+  width: 100%;
+  height: 50%;
+  background: url(https://dreamparty.pk/cdn/shop/products/1.jpg?v=1674202656&width=400)
+    no-repeat center;
+  background-size: cover;
+  position: relative;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 1s;
+}
+
+.sets:hover {
+  background-size: 101%;
+}
+
+.balloons {
+  margin-right: 1em;
+  width: 45%;
+  background: url(https://dreamparty.pk/cdn/shop/files/43.jpg?v=1668845410&width=600)
+    no-repeat center;
+  background-size: cover;
+  position: relative;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 1s;
+}
+
+.balloons:hover {
+  background-size: 101%;
+}
+
+.section-title {
+  font-size: 0.7em;
+}
+
+@media only screen and (min-width: 360px) {
+  .image-introduce {
+  }
+
+  .text-introduce h1 {
+  }
+
+  .text-introduce p {
+  }
+
+  #achievement-intro {
+  }
+
+  .cate-contain {
+  }
+  .birthday {
+  }
+  .cate-option {
+  }
+
+  .birthday-btn {
+    transform: translate(-50%, 200%);
+  }
+
+  .option-btn {
+    transform: translate(-50%, 70%);
+  }
+
+  .hanging-decorations button {
+    padding: 1em 2em;
+    transform: translate(-50%, 20%);
+  }
+
+  .balloons button {
+    transform: translate(-50%, 200%);
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  .testimonial {
+    flex-direction: column;
+    height: 40em;
+  }
+}
+
+@media only screen and (min-width: 750px) {
+  .image-introduce {
+    height: 30em;
+  }
+
+  .text-introduce h1 {
+    font-size: 2.5em;
+  }
+
+  .text-introduce p {
+    font-size: 1.5em;
+  }
+
+  #achievement-intro {
+    font-size: 1.5em;
+  }
+
+  .section-title {
+    font-size: 1em;
+  }
+
+  .cate-contain {
+    display: flex;
+    flex-direction: row;
+  }
+  .birthday {
+    width: 50%;
+    height: 25em;
+  }
+  .cate-option {
+    width: 50%;
+    height: 25em;
+  }
+
+  .hanging-decorations button {
+    transform: translate(-50%, 30%);
+    padding: 0.7em 2em;
+  }
+
+  .balloons button {
+    transform: translate(-50%, 300%);
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  .image-introduce {
+    height: 45em;
+  }
+
+  .shop-now-btn {
+    transform: translate(-50%, 500%);
+  }
+}

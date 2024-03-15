@@ -1,18 +1,18 @@
-import Header from "./components/Header";
+import Header from "./components/Layout/Header";
 import { Routes, Route } from "react-router-dom";
-import Home from "./components/link-route/Home";
+import Home from "./pages/USER/Home";
 import "./styles/global.scss";
-import Footer from "./components/Footer";
-import ContactUs from "./components/link-route/ContactUs";
+import Footer from "./components/Layout/Footer";
+import ContactUs from "./pages/USER/CheckOut";
 import FeedBack from "./components/Feedback";
-import ShopAll from "./components/link-route/ShopAll";
-import ProductDetail from "./components/link-route/ProductDetail";
-import Cart from "./components/link-route/Cart";
-import Checkout from "./components/link-route/Checkout";
-import Error from "./components/link-route/Error";
-import Login from "./components/link-route/Login";
-import Register from "./components/link-route/Register";
-import CompleteOrder from "./components/link-route/CompleteOrder";
+import ShopAll from "./pages/USER/ShopAll";
+import ProductDetail from "./pages/USER/ProductDetail";
+import Cart from "./pages/USER/Cart";
+import Checkout from "./pages/USER/CheckOut";
+import Error from "./pages/USER/Error";
+import Login from "./pages/USER/Login";
+import Register from "./pages/USER/Register";
+import CompleteOrder from "./pages/USER/CompleteOrder";
 
 function App() {
   return (
@@ -38,6 +38,7 @@ function App() {
       {window.location.pathname !== "/cart" &&
         window.location.pathname !== "/checkout" &&
         window.location.pathname !== "/complete-order" && <FeedBack />}
+
       <Footer />
     </div>
   );
