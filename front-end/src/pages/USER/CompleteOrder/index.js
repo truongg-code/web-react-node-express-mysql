@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const CompleteOrder = () => {
   // useEffect(()=> {
@@ -26,9 +27,9 @@ const CompleteOrder = () => {
         </h3>
         <h5>
           Go back to the{" "}
-          <a href="/" onClick={() => localStorage.removeItem("order_code")}>
+          <Link to="/" onClick={() => localStorage.removeItem("order_code")}>
             homepage
-          </a>
+          </Link>
         </h5>
         <p>
           Look up order <a href="#">here</a>

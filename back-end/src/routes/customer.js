@@ -4,7 +4,7 @@ import CustomerController from "../controller/customers/CustomerController";
 const router = express.Router();
 
 const customersApiRoutes = (app) => {
-  router.post("/create", CustomerController.createCustomer);
+  router.post("/create", CustomerController.createOrder);
   router.get("/check-banking", CustomerController.checkBankingCustomer);
   router.get(
     "/check-duplicated",

@@ -1,3 +1,17 @@
+.name-collection {
+  background-color: #878787;
+  height: 15em;
+  line-height: 15em;
+  text-align: center;
+  position: relative;
+  h5 {
+    line-height: 1.5;
+    display: inline-block;
+    vertical-align: middle;
+    color: #fff;
+  }
+}
+
 .cart-container {
   padding-bottom: 5em;
   border-bottom: 1px solid var(--color-icon);
@@ -40,7 +54,15 @@
     .quantity {
       width: 30%;
       margin-top: calc(3em - 9px);
-      margin-left: 0.3em;
+      margin-left: 0.5em;
+      height: 3em;
+      border: 1px solid #000;
+      border-radius: 2em;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+
+      margin-bottom: 1em;
 
       input {
         width: 20%;
@@ -53,6 +75,17 @@
       input[type="number"]::-webkit-outer-spin-button {
         display: none;
       }
+    }
+
+    #decrease,
+    #increase {
+      background-color: #fff;
+      border-radius: 2em;
+      border-color: transparent;
+      font-size: 2em;
+      width: 30%;
+      height: 10%;
+      margin-bottom: 1.7em;
     }
 
     .total {

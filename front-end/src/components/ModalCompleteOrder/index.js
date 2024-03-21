@@ -18,7 +18,9 @@ const ModalCompleteOrder = (props) => {
     email,
     firstName,
     lastName,
+    numberAdress,
     streetAddress,
+    wardAddress,
     district,
     city,
     phone,
@@ -35,10 +37,6 @@ const ModalCompleteOrder = (props) => {
     handleClose();
   };
 
-  let fullName = firstName + lastName;
-
-  let addressGHN = streetAddress + district + city;
-
   const shoppingCartConvertInGHN = (cart) => {
     let cartConvertGHN = cart.map((item) => ({
       name: item.product_name,
@@ -49,32 +47,44 @@ const ModalCompleteOrder = (props) => {
 
   const handleClickConfirm = async () => {
     setLoadingConfirm(true);
+    let fullName = firstName + lastName;
+    let address =
+      numberAdress +
+      " " +
+      streetAddress +
+      " " +
+      wardAddress +
+      " " +
+      district +
+      " " +
+      city;
+
+    let addressGHN = streetAddress + " " + district + " " + city;
     const res = await getCheckBankingCustomer(orderCode);
     let isPay;
     if (res.length > 0) isPay = 1;
     else isPay = 0;
     if (valueInput.trim() === orderCode.toString()) {
+      let userCart = JSON.stringify(cartItems);
       // setTimeout(() => {
-      //   axios
-      //     .post("http://localhost:8081/customer/create", {
-      //       email,
-      //       firstName,
-      //       lastName,
-      //       streetAddress,
-      //       district,
-      //       city,
-      //       phone,
-      //       userCart,
-      //       paymentMethod,
-      //       totalPrice,
-      //       orderCode,
-      //       isPay,
-      //     })
-      //     .then((res) => {
-      //       console.log(">> check res", res.data.Message);
-      //     })
-      //     .catch((err) => console.log(err));
-      //   localStorage.setItem("order_code", orderCode);
+      await axios
+        .post("http://localhost:8081/customer/create", {
+          email,
+          firstName,
+          lastName,
+          address,
+          phone,
+          userCart,
+          paymentMethod,
+          totalPrice,
+          orderCode,
+          isPay,
+        })
+        .then((res) => {
+          console.log(">> check res", res.data.Message);
+        })
+        .catch((err) => console.log(err));
+      localStorage.setItem("order_code", orderCode);
 
       try {
         const response = await axios.post(
@@ -98,7 +108,7 @@ const ModalCompleteOrder = (props) => {
             to_name: fullName,
             to_phone: phone,
             to_address: addressGHN,
-            to_ward_name: "Phường 14",
+            to_ward_name: wardAddress,
             to_district_name: district,
             to_province_name: city,
             cod_amount: totalPrice,

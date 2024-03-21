@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "./checkout.scss";
 import { useShoppingContext } from "../../../contexts/ShoppingContext";
-import axios from "axios";
 import ModalCompleteOrder from "../../../components/ModalCompleteOrder";
 import { countOrderCodeDuplicated } from "../../../services/Service";
 
@@ -13,6 +12,7 @@ const CheckOut = () => {
   const [lastName, setLastName] = useState("");
   const [numberAdress, setNumberAdress] = useState("");
   const [streetAddress, setStreetAddress] = useState("");
+  const [wardAddress, setWardAddress] = useState("");
   const [district, setDistrict] = useState("");
   const [city, setCity] = useState("");
   const [phone, setPhone] = useState("");
@@ -126,6 +126,14 @@ const CheckOut = () => {
             />
           </div>
 
+          <input
+            type="text"
+            placeholder="Ward address"
+            required
+            value={wardAddress}
+            onChange={(e) => setWardAddress(e.target.value)}
+          />
+
           <div className="d-flex justify-content-between">
             <input
               type="text"
@@ -194,7 +202,9 @@ const CheckOut = () => {
                   !email ||
                   !firstName ||
                   !lastName ||
+                  !numberAdress ||
                   !streetAddress ||
+                  !wardAddress ||
                   !district ||
                   !city ||
                   !phone ||
@@ -213,7 +223,9 @@ const CheckOut = () => {
               email={email}
               firstName={firstName}
               lastName={lastName}
+              numberAdress={numberAdress}
               streetAddress={streetAddress}
+              wardAddress={wardAddress}
               district={district}
               phone={phone}
               city={city}

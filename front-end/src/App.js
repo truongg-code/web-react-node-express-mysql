@@ -1,46 +1,50 @@
-import Header from "./components/Layout/Header";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/USER/Home";
 import "./styles/global.scss";
-import Footer from "./components/Layout/Footer";
-import ContactUs from "./pages/USER/CheckOut";
-import FeedBack from "./components/Feedback";
-import ShopAll from "./pages/USER/ShopAll";
-import ProductDetail from "./pages/USER/ProductDetail";
 import Cart from "./pages/USER/Cart";
-import Checkout from "./pages/USER/CheckOut";
-import Error from "./pages/USER/Error";
-import Login from "./pages/USER/Login";
-import Register from "./pages/USER/Register";
-import CompleteOrder from "./pages/USER/CompleteOrder";
+import React, { Suspense } from "react";
+import Layout from "../src/components/Layout";
+import LayoutFeedBack from "../src/components/Layout/component/LayoutFeedBack";
+import Loading from "./components/Loading";
+
+const ContactUs = React.lazy(() => import("./pages/USER/ContactUs"));
+const ShopAll = React.lazy(() => import("./pages/USER/ShopAll"));
+const ProductDetail = React.lazy(() => import("./pages/USER/ProductDetail"));
+const CheckOut = React.lazy(() => import("./pages/USER/CheckOut"));
+const Error = React.lazy(() => import("./pages/USER/Error"));
+const Login = React.lazy(() => import("./pages/USER/Login"));
+const Register = React.lazy(() => import("./pages/USER/Register"));
+const CompleteOrder = React.lazy(() => import("./pages/USER/CompleteOrder"));
 
 function App() {
   return (
-    <div className="app-container">
-      <Header />
+    <Suspense fallback={<Loading />}>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/collections/shop-all" element={<ShopAll />} />
-        <Route path="/contact-us" element={<ContactUs />} />
-        <Route
-          path="/collections/shop-all/products/:slug"
-          element={<ProductDetail />}
-        />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/checkout" element={<Checkout />} />
-        <Route path="/account/login" element={<Login />} />
-        <Route path="/account/register" element={<Register />} />
+        <Route path="/" element={<LayoutFeedBack />}>
+          <Route index element={<Home />} />
 
-        <Route path="/complete-order" element={<CompleteOrder />} />
-        <Route path="*" element={<Error />} />
+          <Route path="/collections/shop-all" element={<ShopAll />} />
+
+          <Route path="/contact-us" element={<ContactUs />} />
+          <Route
+            path="/collections/shop-all/products/:slug"
+            element={<ProductDetail />}
+          />
+        </Route>
+
+        <Route path="/" element={<Layout />}>
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/checkout" element={<CheckOut />} />
+          <Route path="/complete-order" element={<CompleteOrder />} />
+          <Route path="/account">
+            <Route index element={<Navigate to="/account/login" replace />} />
+            <Route path="login" element={<Login />} />
+            <Route path="register" element={<Register />} />
+          </Route>
+          <Route path="*" element={<Error />} />
+        </Route>
       </Routes>
-      {/* chỉ hiển thị feedback với những trang không phải /cart */}
-      {window.location.pathname !== "/cart" &&
-        window.location.pathname !== "/checkout" &&
-        window.location.pathname !== "/complete-order" && <FeedBack />}
-
-      <Footer />
-    </div>
+    </Suspense>
   );
 }
 

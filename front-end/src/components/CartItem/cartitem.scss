@@ -9,7 +9,8 @@
 
   img {
     max-width: 40%;
-    max-height: 70%;
+    // max-height: 70%;
+    max-height: auto;
   }
 
   .short-infor {
@@ -24,12 +25,18 @@
       color: #000;
     }
     .quantity {
-      width: 60%;
+      height: 3em;
+      border: 1px solid #000;
+      border-radius: 2em;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      width: 50%;
       margin-bottom: 1em;
       input {
         width: 20%;
-        outline: none;
-        border: none;
+        outline: none !important;
+        border: none !important;
         font-size: 1em;
         text-align: center;
       }
@@ -37,6 +44,17 @@
       input[type="number"]::-webkit-outer-spin-button {
         display: none;
       }
+    }
+
+    #decrease,
+    #increase {
+      background-color: #fff;
+      border-radius: 2em;
+      border-color: transparent;
+      font-size: 2em;
+      width: 30%;
+      height: 10%;
+      margin-bottom: 1.7em;
     }
 
     .btn-remove {
