@@ -5,16 +5,14 @@ const sendEmail = (userEmail, orderDetails) => {
   return new Promise((resolve, reject) => {
     let transporter = nodemailer.createTransport({
       service: "gmail",
-
       auth: {
-        type: "login", // default
-        user: "truonggforlearncode@gmail.com",
-        pass: "qcko ssra aynh zjqy",
+        user: process.env.HOST_EMAIL,
+        pass: process.env.HOST_PASS,
       },
     });
 
     let mailOptions = {
-      from: "truonggforlearncode@gmail.com",
+      from: process.env.HOST_EMAIL,
       to: userEmail,
       subject: "Order Confirmation",
       text: `Thank you for your order! Details: ${orderDetails}`,
